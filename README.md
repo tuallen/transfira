@@ -12,9 +12,9 @@
 
 <img src="assets/transfira.png" alt="TransFIRA Overview" />
 
-This repository contains the official implementation of **TransFIRA: Transfer Learning for Face Image Recognizability Assessment**, accepted at **IEEE FG 2026**.
+This repository contains the official implementation of **TransFIRA: Transfer Learning for Face Image Recognizability Assessment ([FG 2026](https://fg2026.ieee-biometrics.org/))**.
 
-**Abstract:** *Face recognition in unconstrained environments such as surveillance, video, and web imagery must contend with extreme variation in pose, blur, illumination, and occlusion, where conventional visual quality metrics fail to predict whether inputs are truly recognizable to the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated annotations, or computationally intensive generative pipelines, leaving their predictions detached from the encoder's decision geometry. We introduce TransFIRA (Transfer Learning for Face Image Recognizability Assessment), a lightweight and annotation-free framework that grounds recognizability directly in embedding space. TransFIRA delivers three key contributions: (i) a definition of recognizability via class-center similarity (CCS) and class-center angular separation (CCAS), yielding a natural, decision-boundary-aligned criterion for filtering and weighting; (ii) a recognizability-informed aggregation strategy that improves verification accuracy while increasing correlation with true recognizability, all without external labels, heuristics, or backbone-specific training; and (iii) encoder-grounded explainability that reveals how degradations and subject-specific factors affect recognizability. Together, these contributions establish TransFIRA as a unified, geometry-driven framework for recognizability assessment that is encoder-specific, accurate, interpretable, and extensible across modalities.*
+**Abstract:** *Face recognition in unconstrained environments such as surveillance, video, and web imagery must contend with extreme variation in pose, blur, illumination, and occlusion, where conventional visual quality metrics fail to predict whether inputs are truly recognizable to the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated annotations, or computationally intensive generative pipelines, leaving their predictions detached from the encoder’s decision geometry. We introduce TransFIRA (Transfer Learning for Face Image Recognizability Assessment), a lightweight and annotation-free framework that grounds recognizability directly in embedding space. TransFIRA delivers three advances: (i) a definition of recognizability via class-center similarity (CCS) and class-center angular separation (CCAS), yielding the first natural, decision-boundary–aligned criterion for filtering and weighting; (ii) a recognizability-informed aggregation strategy that achieves state-of-the-art verification accuracy on BRIAR and IJB-C while nearly doubling correlation with true recognizability, all without external labels, heuristics, or backbone-specific training; and (iii) new extensions beyond faces, including encoder-grounded explainability that reveals how degradations and subject-specific factors affect recognizability, and the first method for body recognizability assessment. Experiments confirm state-of-the-art results on faces, strong performance on body recognition, and robustness under cross-dataset shifts and out-of-distribution evaluation. Together, these contributions establish TransFIRA as a unified, geometry-driven framework for recognizability assessment  that is encoder-specific, accurate, interpretable, and extensible across modalities, significantly advancing FIQA in accuracy, explainability, and scope.*
 
 
 
@@ -120,7 +120,7 @@ TransFIRA is a framework to define recognizability through encoder-specific, geo
 - **Encoder-Specific**: Predictions reflect the actual discrimination ability of your deployed model, not generic visual quality
 - **Geometry-Grounded**: Labels derived directly from embedding space (CCS, CCAS) align with decision boundaries
 - **Annotation-Free**: No human quality labels, external IQA supervision, or recognition-specific training required
-- **Lightweight**: Adds only a small MLP head; works with any pretrained backbone
+- **Lightweight**: Adds only a linear layer; works with any pretrained backbone
 
 ## Configuration
 
@@ -189,7 +189,7 @@ This produces calibrated CCS/NNCCS/CCAS scores that spread across [0,1] with res
 
 ## 2. Training the Recognizability Prediction Network
 
-TransFIRA extends any pretrained backbone with a lightweight regression head (MLP) that predicts recognizability directly from images. The backbone and head are trained end-to-end using mean squared error loss (Equation 9) against precomputed CCS/CCAS labels.
+TransFIRA extends any pretrained backbone with a lightweight regression head, implemented as a linear layer, that predicts recognizability directly from images. The backbone and head are trained end-to-end using mean squared error loss (Equation 9) against precomputed CCS/CCAS labels.
 
 ```bash
 torchrun --nproc_per_node=<num_gpus> train.py --config configs/train.toml
