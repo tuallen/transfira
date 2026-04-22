@@ -1,5 +1,7 @@
 # TransFIRA: Transfer Learning for Face Image Recognizability Assessment
 
+**FG 2026 — Oral Presentation**
+
 **[Project Page](https://transfira.github.io/) | [arXiv](https://arxiv.org/abs/2510.06353) | [Paper](https://arxiv.org/pdf/2510.06353) | [OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr)**
 
 [Allen Tu](https://tuallen.github.io),
