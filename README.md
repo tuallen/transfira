@@ -1,6 +1,6 @@
 # TransFIRA: Transfer Learning for Face Image Recognizability Assessment
 
-**FG 2026 — Oral Presentation**
+**FG 2026 (Oral)**
 
 **[Project Page](https://transfira.github.io/) | [arXiv](https://arxiv.org/abs/2510.06353) | [Paper](https://arxiv.org/pdf/2510.06353) | [OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr)**
 
@@ -251,12 +251,15 @@ The raw evaluation metric files, scripts, and Jupyter notebooks used to generate
 ## BibTeX
 
 ```bibtex
-@article{Tu2025TransFIRA,
-    author  = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn Matthew and Goldstein, Tom and Patel, Vishal M.},
-    title   = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
-    journal = {arXiv preprint arXiv:2510.06353},
-    year    = {2025},
-    url     = {https://transfira.github.io/}
+@InProceedings{Tu2026TransFIRA,
+    author    = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
+    title     = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
+    booktitle = {Proceedings of the IEEE 20th International Conference on Automatic Face and Gesture Recognition (FG)},
+    month     = {May},
+    year      = {2026},
+    pages     = {1-9},
+    doi       = {10.1109/FG67764.2026.11556959},
+    url       = {https://transfira.github.io/}
 }
 ```
 
