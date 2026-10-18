@@ -1,8 +1,8 @@
 # TransFIRA: Transfer Learning for Face Image Recognizability Assessment
 
-**FG 2026 (Oral)**
+**[FG 2026 Oral Presentation](https://fg2026.ieee-biometrics.org/)**
 
-**[Project Page](https://transfira.github.io/) | [arXiv](https://arxiv.org/abs/2510.06353) | [Paper](https://arxiv.org/pdf/2510.06353) | [OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr)**
+**[Project Page](https://transfira.github.io/) | [Paper](https://arxiv.org/pdf/2510.06353) | [arXiv](https://arxiv.org/abs/2510.06353) | [Talk](https://youtu.be/E7kEIS1PW1I) | [Weights and Annotations](https://github.com/tuallen/transfira/releases/tag/v1.0.0)**
 
 [Allen Tu](https://tuallen.github.io),
 [Kartik Narayan](https://kartik-3004.github.io/portfolio/),
@@ -12,7 +12,7 @@
 [Tom Goldstein](https://www.cs.umd.edu/~tomg/),
 [Vishal M. Patel](https://engineering.jhu.edu/faculty/vishal-patel/)
 
-<img src="assets/transfira.png" alt="TransFIRA Overview" />
+<img src="assets/transfira.png" alt="TransFIRA overview" />
 
 This repository contains the official implementation of **TransFIRA: Transfer Learning for Face Image Recognizability Assessment ([FG 2026](https://fg2026.ieee-biometrics.org/))**.
 
@@ -48,7 +48,7 @@ Download the following files and place them in `pretrained_weights/`:
   - Download from [InsightFace HuggingFace](https://huggingface.co/yolkailtd/face-swap-models/blob/main/insightface/models/buffalo_l/w600k_r50.onnx)
 
 - **`w600k_r50_transfira_0025.pt`**: TransFIRA recognizability predictor (epoch 25)
-  - Download from [TransFIRA OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr)
+  - Download from the [TransFIRA v1.0.0 release](https://github.com/tuallen/transfira/releases/tag/v1.0.0)
 
 ```
 pretrained_weights/
@@ -60,7 +60,7 @@ pretrained_weights/
 
 **Note on Dataset Availability:** IARPA BRIAR Protocol 3.1 is proprietary and cannot be released. IARPA is not currently distributing the IJB-C evaluation dataset. The full WebFace12M dataset is not currently being distributed. See the [Paper Results](#paper-results) section for more information on reproducibility.
 
-We provide training and validation annotations for a subset of WebFace12M on the [TransFIRA OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr):
+We provide training and validation annotations for a subset of WebFace12M in the [TransFIRA v1.0.0 release](https://github.com/tuallen/transfira/releases/tag/v1.0.0):
 - **Training set**: 10,000 identities (train_10k.csv)
 - **Validation set**: 2,000 identities (val_2k.csv)
 
@@ -240,12 +240,9 @@ python test.py --config configs/test.toml --generate_features --predict_scores -
 - **`templates_filter.npy`**: Templates aggregated from CCAS > 0 filtered samples only
 - **`templates_filter_weight.npy`**: Filtered + weighted templates (best performance)
 
-### Paper Results
+### IARPA BRIAR Data and Models
 
-**Note on Reproducibility:** The proprietary nature of IARPA BRIAR data and models, combined with WebFace12M and IJB-C no longer being actively distributed, presents challenges for directly reproducing the paper results. The results reported in the paper were computed using evaluation protocols that enable 1e-6 FMR measurements on BRIAR Protocol 3.1 and IJB-C, as well as direct comparison to numerous FIQA methods. The [test.py](test.py) script provided in this repository demonstrates a more practical example of template aggregation for general use cases.
-
-The raw evaluation metric files, scripts, and Jupyter notebooks used to generate the paper results will eventually be uploaded to the [TransFIRA OneDrive](https://umd0-my.sharepoint.com/:f:/g/personal/atu1_umd_edu/IgBq51obRcrbQ6x5C8mYh3iRAd9cwfOzS86NhC5QrAL424A?e=QSKMHr). In the meantime, please reach out to [Allen Tu](https://tuallen.github.io) for access to these materials.
-
+The proprietary nature of IARPA BRIAR data and models, combined with WebFace12M and IJB-C no longer being actively distributed, presents challenges for directly reproducing the paper results. The results reported in the paper were computed using evaluation protocols that enable 1e-6 FMR measurements on BRIAR Protocol 3.1 and IJB-C, as well as direct comparison to numerous FIQA methods. The [test.py](test.py) script provided in this repository demonstrates a more practical example of template aggregation for general use cases.
 
 
 ## BibTeX
@@ -263,7 +260,7 @@ The raw evaluation metric files, scripts, and Jupyter notebooks used to generate
 }
 ```
 
-
+In addition to being an [oral presentation](https://youtu.be/E7kEIS1PW1I) at [FG 2026](https://fg2026.ieee-biometrics.org/), TransFIRA has been invited to submit an extended version to the [IEEE T-BIOM Special Issue](https://ieee-biometrics.org/publications/t-biom/) on the [Best-Ranked Articles of IEEE FG 2026](https://fg2026.ieee-biometrics.org/cfp/#awards-and-ieee-tbiom-special-issue).
 
 ## Acknowledgements
 
