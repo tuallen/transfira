@@ -1,6 +1,4 @@
-# TransFIRA: Transfer Learning for Face Image Recognizability Assessment
-
-**[FG 2026 Oral Presentation](https://fg2026.ieee-biometrics.org/)**
+# TransFIRA: Transfer Learning for Face Image Recognizability Assessment (FG 2026 Oral)
 
 **[Project Page](https://transfira.github.io/) | [Paper](https://arxiv.org/pdf/2510.06353) | [arXiv](https://arxiv.org/abs/2510.06353) | [Talk](https://youtu.be/E7kEIS1PW1I) | [Weights and Annotations](https://github.com/tuallen/transfira/releases/tag/v1.0.0)**
 
@@ -11,6 +9,10 @@
 [Matthew Meyn](https://www.linkedin.com/in/matthew-meyn-579784157),
 [Tom Goldstein](https://www.cs.umd.edu/~tomg/),
 [Vishal M. Patel](https://engineering.jhu.edu/faculty/vishal-patel/)
+
+### TransFIRA+: Transfer Learning for Biometric Recognizability Assessment (Extended Version)
+
+**[Project Page](https://transfira.github.io/plus) | [Paper](https://arxiv.org/pdf/2611.23442) | [arXiv](https://arxiv.org/abs/2611.23442)**
 
 <img src="assets/transfira.png" alt="TransFIRA overview" />
 
@@ -40,7 +42,7 @@ This installs PyTorch with CUDA 11.8 support. For other CUDA versions or CPU-onl
 
 ### 3. Download pretrained weights
 
-**Note on Model Availability:** IARPA BRIAR training data and models are proprietary, so we cannot release the STR SwinTransformer, STR SemReID, or InsightFace ArcFace models finetuned on BRIAR training data used in the paper at this time. We provide the InsightFace ArcFace ResNet-50 model finetuned on WebFace12M (600K identities). See the [Paper Results](#paper-results) section for more information on reproducibility.
+**Note on Model Availability:** IARPA BRIAR training data and models are proprietary, so we cannot release the STR SwinTransformer, STR SemReID, or InsightFace ArcFace models finetuned on BRIAR training data used in the paper at this time. We provide the InsightFace ArcFace ResNet-50 model finetuned on WebFace12M (600K identities). See the [Data and Models](#iarpa-briar-and-videolincs-data-and-models) section for more information on reproducibility.
 
 Download the following files and place them in `pretrained_weights/`:
 
@@ -58,7 +60,7 @@ pretrained_weights/
 
 ### 4. Prepare your dataset
 
-**Note on Dataset Availability:** IARPA BRIAR Protocol 3.1 is proprietary and cannot be released. IARPA is not currently distributing the IJB-C evaluation dataset. The full WebFace12M dataset is not currently being distributed. See the [Paper Results](#paper-results) section for more information on reproducibility.
+**Note on Dataset Availability:** IARPA BRIAR Protocol 3.1 is proprietary and cannot be released. IARPA is not currently distributing the IJB-C evaluation dataset. The full WebFace12M dataset is not currently being distributed. See the [Data and Models](#iarpa-briar-and-videolincs-data-and-models) section for more information on reproducibility.
 
 We provide training and validation annotations for a subset of WebFace12M in the [TransFIRA v1.0.0 release](https://github.com/tuallen/transfira/releases/tag/v1.0.0):
 - **Training set**: 10,000 identities (train_10k.csv)
@@ -172,7 +174,7 @@ For datasets with separate gallery and probe sets (e.g., BRIAR), define `[train_
 
 ### Calibration (Optional)
 
-For domains where cosine similarities saturate near 1.0 (e.g., body recognition), sigmoid calibration can restore discriminative variation. See Section IV-E and Figure 4 in the paper.
+For domains where cosine similarities saturate near 1.0 (e.g., body recognition), sigmoid calibration can restore discriminative variation. Calibration is introduced in [TransFIRA+](https://transfira.github.io/plus) (Section III-D and Fig. 2).
 
 ```bash
 # Train calibration on training set
@@ -240,12 +242,14 @@ python test.py --config configs/test.toml --generate_features --predict_scores -
 - **`templates_filter.npy`**: Templates aggregated from CCAS > 0 filtered samples only
 - **`templates_filter_weight.npy`**: Filtered + weighted templates (best performance)
 
-### IARPA BRIAR Data and Models
+### IARPA BRIAR and VideoLINCS Data and Models
 
-The proprietary nature of IARPA BRIAR data and models, combined with WebFace12M and IJB-C no longer being actively distributed, presents challenges for directly reproducing the paper results. The results reported in the paper were computed using evaluation protocols that enable 1e-6 FMR measurements on BRIAR Protocol 3.1 and IJB-C, as well as direct comparison to numerous FIQA methods. The [test.py](test.py) script provided in this repository demonstrates a more practical example of template aggregation for general use cases.
+IARPA BRIAR data and models are proprietary and the IARPA VideoLINCS datasets are nonpublic, so neither can be released. Combined with WebFace12M and IJB-C no longer being actively distributed, this presents challenges for directly reproducing the paper results. The face and body verification results were computed using evaluation protocols that enable 1e-6 FMR measurements on BRIAR Protocol 3.1 and IJB-C, as well as direct comparison to numerous FIQA methods. This repository includes the sigmoid calibration ([calibrate.py](calibrate.py)) used in TransFIRA+, but not the multimodal video identification pipeline. The [test.py](test.py) script demonstrates a more practical example of template aggregation for general use cases.
 
 
 ## BibTeX
+
+[TransFIRA+](https://transfira.github.io/plus) is an extended version of [TransFIRA (FG 2026)](https://transfira.github.io/). If you find this work useful, please cite both papers.
 
 ```bibtex
 @InProceedings{Tu2026TransFIRA,
@@ -260,8 +264,16 @@ The proprietary nature of IARPA BRIAR data and models, combined with WebFace12M 
 }
 ```
 
-In addition to being an [oral presentation](https://youtu.be/E7kEIS1PW1I) at [FG 2026](https://fg2026.ieee-biometrics.org/), TransFIRA has been invited to submit an extended version to the [IEEE T-BIOM Special Issue](https://ieee-biometrics.org/publications/t-biom/) on the [Best-Ranked Articles of IEEE FG 2026](https://fg2026.ieee-biometrics.org/cfp/#awards-and-ieee-tbiom-special-issue).
+```bibtex
+@article{Tu2026TransFIRAPlus,
+    author  = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
+    title   = {TransFIRA+: Transfer Learning for Biometric Recognizability Assessment},
+    journal = {arXiv preprint arXiv:2611.23442},
+    year    = {2026},
+    url     = {https://transfira.github.io/plus}
+}
+```
 
 ## Acknowledgements
 
-This research is based upon work supported in part by the Office of the Director of National Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via [2022-21102100005]. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government. The US Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any copyright annotation therein.
+This research is based upon work supported in part by the Office of the Director of National Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via IARPA R&D Contracts No. 2022-21102100005 and No. 56000026C0026. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government. The US Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any copyright annotation therein.
